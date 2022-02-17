@@ -1,0 +1,41 @@
+---
+const { file, caption } = Astro.props;
+const { url } = Astro.request;
+
+const source = `/assets/${url.pathname}/${file}`;
+---
+
+<figure class="image">
+  <img src={source}>
+  <figcaption>{ caption }</figcaption>
+</figure>
+
+<style>
+figure.image {
+  max-width: calc(100% - 128px);
+  margin: 0 64px 32px;
+}
+
+@media (max-width: 767px) {
+  figure.image {
+    max-width: calc(100% - 64px);
+    margin: 0 32px 32px;
+  }
+}
+
+figure img {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius-medium);
+}
+
+figure figcaption {
+  max-width: 720px;
+  margin-top: 8px;
+  margin-right: auto;
+  margin-left: auto;
+  color: var(--text-secondary);
+  font-size: var(--text-size-tiny);
+  text-align: center;
+}
+</style>
